@@ -1,7 +1,11 @@
-import React from "react";
+import { React } from "react";
 import { Paciente } from "./Paciente";
 
-export const ListadoPacientes = ({ pacientes }) => {
+export const ListadoPacientes = ({
+  pacientes,
+  setPaciente,
+  eliminarPaciente,
+}) => {
   return (
     <div className="md:w-1/2 lg:w-3-5 md:h-screen overflow-y-scroll">
       {pacientes && pacientes.length > 0 ? (
@@ -15,7 +19,12 @@ export const ListadoPacientes = ({ pacientes }) => {
           </p>
 
           {pacientes.map((paciente) => (
-            <Paciente key={paciente.id} paciente={paciente} />
+            <Paciente
+              key={paciente.id}
+              paciente={paciente}
+              setPaciente={setPaciente}
+              eliminarPaciente={eliminarPaciente}
+            />
           ))}
         </>
       ) : (
