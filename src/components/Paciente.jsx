@@ -1,34 +1,30 @@
 import React from "react";
 
-export const Paciente = () => {
+export const Paciente = ({ paciente }) => {
+  const { nombre, propietario, email, fecha, sintomas } = paciente;
+
+  console.log(paciente);
   return (
     <div className="mx-5 my-10 bg-white shadow-md px-5 py-10 rounded-xl">
       <p className="font-bold mb-3 text-gray-700 uppercase">
         Nombre: {""}
-        <span className="font-normal normal-case">Hook</span>
+        <span className="font-normal normal-case">{nombre}</span>
       </p>
       <p className="font-bold mb-3 text-gray-700 uppercase">
-        Propietarioo: {""}
-        <span className="font-normal normal-case">Luis</span>
+        Propietario: {""}
+        <span className="font-normal normal-case">{propietario}</span>
       </p>
       <p className="font-bold mb-3 text-gray-700 uppercase">
         Email: {""}
-        <span className="font-normal normal-case">luis@correo.com</span>
+        <span className="font-normal normal-case">{email}</span>
       </p>
       <p className="font-bold mb-3 text-gray-700 uppercase">
         Fecha Alta: {""}
-        <span className="font-normal normal-case">15 Septiembre 2016</span>
+        <span className="font-normal normal-case">{fecha}</span>
       </p>
       <p className="font-bold mb-3 text-gray-700 uppercase">
-        Sintomas {""}
-        <span className="font-normal normal-case">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras laoreet
-          mi odio, sed rutrum purus elementum nec. Cras malesuada tincidunt
-          neque in bibendum. Nam cursus, nunc vitae fringilla luctus, arcu eros
-          porta velit, ut gravida dui turpis in eros. Praesent mattis varius
-          commodo. Donec ultricies odio est. Mauris convallis nibh et odio
-          consectetur porta. Etiam condimentum sit amet diam non gravida.
-        </span>
+        Sintomas: {""}
+        <span className="font-normal normal-case">{sintomas}</span>
       </p>
     </div>
   );

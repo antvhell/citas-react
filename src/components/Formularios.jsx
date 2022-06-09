@@ -1,15 +1,49 @@
 import { useState, useEffect } from "react";
+import Error from "./Error";
 
-export const Formularios = () => {
+export const Formularios = ({ pacientes, setPacientes }) => {
   const [nombre, setNombre] = useState("");
   const [propietario, setPropietario] = useState("");
   const [email, setEmail] = useState("");
   const [fecha, setFecha] = useState("");
   const [sintomas, setSintomas] = useState("");
+  const [error, setError] = useState(false);
+
+  // Generando un ID aleatorio
+  const generarId = () => {
+    const random = Math.random().toString(36).substr(2);
+    const fecha = Date.now().toString(36);
+    return random + fecha;
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Enviando Formulario");
+
+    // Validando el Formulario
+    if ([nombre, propietario, email, fecha, sintomas].includes("")) {
+      console.log("Hay al menor un campo vacio");
+      setError(true);
+      return;
+    }
+    setError(false);
+    // Objeto de paciente
+    const objetoPaciente = {
+      nombre,
+      propietario,
+      email,
+      fecha,
+      sintomas,
+      id: generarId(),
+    };
+    // console.log(objetoPaciente);
+    setPacientes([...pacientes, objetoPaciente]);
+
+    // Limpiar el formulario
+    setNombre("");
+    setPropietario("");
+    setEmail("");
+    setFecha("");
+    setSintomas("");
   };
 
   return (
@@ -23,6 +57,12 @@ export const Formularios = () => {
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded-lg py-5 px-5 mb-10"
       >
+        {error && (
+          <Error>
+            <p>Todos los campos son obligatorios</p>
+          </Error>
+        )}
+
         <div className="mb-5">
           <label
             htmlFor="mascota"
